@@ -15,8 +15,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from warehouse import views
+
+handler400 = 'warehouse.views.error_400'
+handler401 = 'warehouse.views.error_401'
+handler403 = 'warehouse.views.error_403'
+handler404 = 'warehouse.views.error_404'
+handler500 = 'warehouse.views.error_500'
+handler502 = 'warehouse.views.error_502'
+handler503 = 'warehouse.views.error_503'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('warehouse.urls')),
+     
 ]
