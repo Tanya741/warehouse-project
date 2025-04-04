@@ -27,7 +27,7 @@ handler502 = 'warehouse.views.error_502'
 handler503 = 'warehouse.views.error_503'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('', include('warehouse.urls')),
      
 ]

@@ -3,14 +3,14 @@
 {% block content %}
     <article class="product">
         <aside class="actions">
-            {% if user.is_authenticated %}
+            {% comment %} {% if user.is_authenticated %} {% endcomment %}
                 <a class="btn btn-secondary" href="{% url 'product_edit' pk=product.pk %}">
                     {% include './icons/pencil-fill.svg' %}
                 </a>
                 <a class="btn btn-secondary" href="{% url 'product_delete' pk=product.pk %}"> 
                     Delete
                 </a>
-            {% endif %}
+            {% comment %} {% endif %} {% endcomment %}
         </aside>
         {% if product.published_date %}
             <time class="date">
