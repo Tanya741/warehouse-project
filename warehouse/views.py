@@ -11,14 +11,24 @@ def product_list(request):
 
 
 def product_detail(request, pk):
-    product = get_object_or_404(Product, pk=pk)
+    try:
+        product = Product.objects.get(pk=pk)  # MongoEngine Query
+    except Product.DoesNotExist:
+        raise Http404("Product not found")
     return render(request, 'warehouse/product_detail.html', {'product': product})
 
 def product_new(request):
     if request.method =="POST":
         form = ProductForm(request.POST)
         if form.is_valid():
-            product = form.save(commit=False)
+            product = Product(
+                name = form.cleaned_data['name'],
+                description = form.cleaned_data['description'],
+                category = form.cleaned_data['category'],
+                price = form.cleaned_data['price'],
+                brand = form.cleaned_data['brand'],
+                quantity = form.cleaned_data['quantity'],
+            )
             product.author = request.user
             product.published_date = timezone.now()
             product.save()
@@ -28,21 +38,27 @@ def product_new(request):
     return render(request, 'warehouse/product_edit.html', {'form': form})
 
 def product_edit(request, pk):
-    product = get_object_or_404(Product, pk=pk)
+    try:
+        product = Product.objects.get(pk=pk)  # MongoEngine Query
+    except Product.DoesNotExist:
+        raise Http404("Product not found")
     if request.method =="POST":
-        form = ProductForm(request.POST, instance=product)
+        form = ProductForm(request.POST, initial=product.to_mongo().to_dict())
         if form.is_valid():
-            product = form.save(commit=False)
+            product.update(**form.cleaned_data)
             product.author = request.user
             product.published_date = timezone.now()
             product.save()
             return redirect('product_detail', pk=product.pk)
     else:
-        form = ProductForm(instance=product)
+        form = ProductForm(initial=product.to_mongo().to_dict())
     return render(request, 'warehouse/product_edit.html', {'form': form})
 
 def product_delete(request, pk):
-    product = get_object_or_404(Product, pk=pk)
+    try:
+        product = Product.objects.get(pk=pk)  # MongoEngine Query
+    except Product.DoesNotExist:
+        raise Http404("Product not found")
     product.delete()
     return redirect('product_list')
 
