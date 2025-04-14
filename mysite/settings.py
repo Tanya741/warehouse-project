@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-mongoengine.connect(db="mydatabase", host="mongodb://localhost:27017/")
+mongoengine.connect(db="New", host="mongodb://mongodb:27017/")
 
 DATABASES = {
     'default': {

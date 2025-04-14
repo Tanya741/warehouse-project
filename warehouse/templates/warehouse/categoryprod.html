@@ -12,12 +12,12 @@
         <header class="page-header">
           <div class="container">
                 {% comment %} {% if user.is_authenticated %} {% endcomment %}
-                  <a href="{% url 'product_new' %}" class="top-menu">
+                  <a href="{% url 'category_new' %}" class="top-menu">
                     {% include './icons/file-earmark-plus.svg' %}
                   </a>
                 {% comment %} {% endif %} {% endcomment %}
                 
-              <h1><a href="/">Warehouse Products</a></h1>
+              <h1><a href="/">Warehouse categories</a></h1>
           </div>
         </header>
         <main class="container">
