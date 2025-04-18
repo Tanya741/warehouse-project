@@ -157,17 +157,17 @@ def product_new_cat(request, cat, pk):
         form.category= cat
         if form.is_valid(): 
             product_data={
-            'name': form.cleaned_data['name'],
-            'description': form.cleaned_data['description'],
-            'category': cat,
-            'price': form.cleaned_data['price'],
-            'brand': form.cleaned_data['brand'],
-            'quantity': form.cleaned_data['quantity'],
-            # 'author': request.user,
-            'published_date': timezone.now(),
-        }
-        ProductService.add_product(product_data, request)
-        return redirect('category_detail', pk=pk)
+                'name': form.cleaned_data['name'],
+                'description': form.cleaned_data['description'],
+                'category': cat,
+                'price': form.cleaned_data['price'],
+                'brand': form.cleaned_data['brand'],
+                'quantity': form.cleaned_data['quantity'],
+                # 'author': request.user,
+                'published_date': timezone.now(),
+            }
+            ProductService.add_product(product_data, request)
+            return redirect('category_detail', pk=pk)
     else:
         form = ProductForm()
     return render(request, 'warehouse/product_edit.html', {'form': form})    

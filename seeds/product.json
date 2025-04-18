@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Wireless Mouse",
+        "description" : "Ergonomic wireless mouse with 2-4 Ghz connectivity",
+        "category": "Electronics",
+        "price":30,
+        "brand": "LogiTech",
+        "quantity": 150, 
+        "published_date": "2024-04-10T09:00:00Z"
+    },
+    {
+        "name": "Python Programming",
+        "description": "Beginner to advanced guide to Python",
+        "category": "Books",
+        "price": 49.99,
+        "brand": "O'Reilly",
+        "quantity": 100,
+        "published_date": "2024-04-15T15:45:00Z"
+    }
+]

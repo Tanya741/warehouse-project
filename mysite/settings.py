@@ -79,9 +79,12 @@ mongoengine.connect(db="New", host="mongodb://mongodb:27017/")
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.dummy'
+        'ENGINE': 'django.db.backends.dummy',
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ATOMIC_REQUESTS': False,
+        'AUTOCOMMIT': True,
+    
     }
 }
 
