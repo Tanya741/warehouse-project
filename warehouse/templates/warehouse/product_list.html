@@ -8,7 +8,7 @@
                         <time class= "date">published: {{product.published_date}}</time>
                         <h2><a href="{% url 'product_detail' pk=product.pk %}">{{product.name}}</a></h2>
                         <p><B>description:</B>{{product.description|linebreaksbr}}</p>
-                        <p><B>category:</B>{{product.category|linebreaksbr}}</p>
+                        <p><B>category:</B>{{product.category.title|linebreaksbr}}</p>
                         <p><B>price:</B>{{product.price|linebreaksbr}}</p>
                         <p><B>brand:</B>{{product.brand|linebreaksbr}}</p>
                         <p><B>quantity:</B>{{product.quantity|linebreaksbr}}</p>

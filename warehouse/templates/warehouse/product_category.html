@@ -1,0 +1,14 @@
+{% extends 'warehouse/categoryprod.html' %}
+
+
+                {% block content %} 
+                <h1><B>PRODUCTS CATEGORIES </h1>
+                    {% for category in categories %}
+                    
+                    <article class ="product">
+                        {% comment %} <time class= "date">published: {{product.published_date}}</time> {% endcomment %}
+                        <h2><a href="{% url 'category_detail' pk=category.pk %}">{{category.title}}</a></h2>
+                        <p><B>description:</B>{{category.description|linebreaksbr}}</p>
+                    </article>
+                    {% endfor %}
+                {% endblock %}

@@ -1,11 +1,12 @@
-{% extends 'warehouse/baseprod.html' %}
+{% extends 'warehouse/categoryprod.html' %}
 
 
                 {% block content %} 
                 {% if page_obj %}
-                    {% for product in page_obj %}
+                <div class="pagination">
+                    {% for categoryproduct in page_obj %}
                     <article class ="product">
-                        <div class="pagination">
+                        
                             <span class="step-links">
                                 {% if page_obj.has_previous %}
                                     <a href="?page=1">&laquo; first</a>
@@ -21,19 +22,19 @@
                                     <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
                                 {% endif %}
                             </span>
-                        </div>
                         
                         
-                        <time class= "date">published: {{product.published_date}}</time>
-                        <h2><a href="{% url 'product_detail' pk=product.pk %}">{{product.name}}</a></h2>
-                        <p><B>description:</B>{{product.description|linebreaksbr}}</p>
-                        <p><B>category:</B>{{product.category.title|linebreaksbr}}</p>
-                        <p><B>price:</B>{{product.price|linebreaksbr}}</p>
-                        <p><B>brand:</B>{{product.brand|linebreaksbr}}</p>
-                        <p><B>quantity:</B>{{product.quantity|linebreaksbr}}</p>
+                        
+                        <time class= "date">published: {{categoryproduct.published_date}}</time>
+                        <h2><a href="{% url 'product_detail' pk=categoryproduct.pk %}">{{categoryproduct.name}}</a></h2>
+                        <p><B>description:</B>{{categoryproduct.description|linebreaksbr}}</p>
+                        <p><B>category:</B>{{categoryproduct.category.title|linebreaksbr}}</p>
+                        <p><B>price:</B>{{categoryproduct.price|linebreaksbr}}</p>
+                        <p><B>brand:</B>{{categoryproduct.brand|linebreaksbr}}</p>
+                        <p><B>quantity:</B>{{categoryproduct.quantity|linebreaksbr}}</p>
                     </article>
                     {% endfor %}
-
+                </div>
                     {% else %}
                     <p>No products found.</p>
                 {% endif %}   

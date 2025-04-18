@@ -1,0 +1,68 @@
+{% extends 'warehouse/categoryprod.html' %}
+
+{% block content %}
+    <article class="product">
+        <aside class="actions">
+            {% comment %} {% if user.is_authenticated %} {% endcomment %}
+            <a class="btn btn-secondary" href="{% url 'product_new_cat' pk=category.pk cat=category.title %}"> 
+                Add Product
+            </a>
+                <a class="btn btn-secondary" href="{% url 'category_edit' pk=category.pk %}">
+                    {% include './icons/pencil-fill.svg' %}
+                </a>
+                <a class="btn btn-secondary" href="{% url 'category_delete' pk=category.pk %}"> 
+                    Delete
+                </a>
+            {% comment %} {% endif %} {% endcomment %}
+        </aside>
+        {% if category.published_date %}
+            <time class="date">
+                {{ category.published_date }}
+            </time>
+        {% endif %}
+        <h2>{{ category.title }}</h2>
+        <p><B>description:</B>{{category.description|linebreaksbr}}</p>
+        {% comment %} <p><B>category:</B>{{product.category.title|linebreaksbr}}</p>
+        <p><B>price:</B>{{product.price|linebreaksbr}}</p>
+        <p><B>brand:</B>{{product.brand|linebreaksbr}}</p>
+        <p><B>quantity:</B>{{product.quantity|linebreaksbr}}</p> {% endcomment %}
+
+        </article>
+
+        {% if page_obj %}
+                <div class="pagination">
+                    {% for categoryproduct in page_obj %}
+                    <article class ="product">
+                        
+                            <span class="step-links">
+                                {% if page_obj.has_previous %}
+                                    <a href="?page=1">&laquo; first</a>
+                                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                                {% endif %}
+                        
+                                <span class="current">
+                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                                </span>
+                        
+                                {% if page_obj.has_next %}
+                                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                                {% endif %}
+                            </span>
+                        
+                        
+                        
+                        <time class= "date">published: {{categoryproduct.published_date}}</time>
+                        <h2><a href="{% url 'product_detail' pk=categoryproduct.pk %}">{{categoryproduct.name}}</a></h2>
+                        <p><B>description:</B>{{categoryproduct.description|linebreaksbr}}</p>
+                        <p><B>category:</B>{{categoryproduct.category.title|linebreaksbr}}</p>
+                        <p><B>price:</B>{{categoryproduct.price|linebreaksbr}}</p>
+                        <p><B>brand:</B>{{categoryproduct.brand|linebreaksbr}}</p>
+                        <p><B>quantity:</B>{{categoryproduct.quantity|linebreaksbr}}</p>
+                    </article>
+                    {% endfor %}
+                </div>
+                    {% else %}
+                    <p>No products found.</p>
+    {% endif %}   
+{% endblock %}
